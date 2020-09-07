@@ -1,0 +1,9 @@
+.line {
+	width: 5px;
+	background-color: blue;
+}
+
+.outerDiv {
+	display: flex;
+	justify-content: space-around;
+}
