@@ -9,6 +9,7 @@ const BubbleSort = (arr1) => {
 			animations.push([j, j - 1]);
 			if (arr[j] < arr[j - 1]) {
 				changeHeight.push(true, false);
+
 				temp = arr[j - 1];
 				arr[j - 1] = arr[j];
 				arr[j] = temp;
@@ -17,6 +18,7 @@ const BubbleSort = (arr1) => {
 			}
 		}
 	}
+
 	return { animations, changeHeight };
 };
 

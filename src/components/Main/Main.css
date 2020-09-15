@@ -1,9 +1,33 @@
 .line {
-	width: 5px;
-	background-color: blue;
+	width: 8px;
+	background-color: #e6af2e;
+	border-radius: 5px;
 }
 
 .outerDiv {
 	display: flex;
 	justify-content: space-around;
+	align-items: center;
+}
+
+.outerBtn {
+	display: flex;
+	justify-content: space-around;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.button {
+	border: none;
+	background-color: black;
+	color: white;
+	width: 10rem;
+	height: 3rem;
+	border-radius: 7px;
+	box-shadow: gray;
+}
+
+.button:hover {
+	background-color: white;
+	color: black;
 }
