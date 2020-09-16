@@ -9,6 +9,7 @@ const SECONDARY_COLOR = "#429EA6";
 function Main() {
 	const [array, setArray] = useState([]);
 	const [numberOfLines, setNumberOfLines] = useState(25);
+	const [running, setRunning] = useState(false);
 	useEffect(() => {
 		resetArray();
 	}, []);
@@ -28,6 +29,7 @@ function Main() {
 	};
 
 	const bubbleSort = () => {
+		setRunning(true);
 		const { bubbleSrtAnimations, changeHeight } = BubbleSort([...array]);
 		// setbubbleSrtAnimations(bubbleSrtAnimations);
 		// setChangeHeight(changeHeight);
@@ -50,12 +52,17 @@ function Main() {
 				if (i % 2 !== 0) {
 					lineStyle1.backgroundColor = "green";
 				}
-			}, i * 100);
+				if (i == bubbleSrtAnimations.length - 1) {
+					setRunning(false);
+					lines[0].style.backgroundColor = "green";
+				}
+			}, i * 10);
 		}
 	};
 
 	//merge sort
 	const mergeSort = () => {
+		setRunning(true);
 		const { animations } = MergeSortSuper([...array]);
 		const lines = document.getElementsByClassName("line");
 		for (let i in animations) {
@@ -75,6 +82,9 @@ function Main() {
 					lineStyle1.height = hgt1 + "vh";
 					lineStyle2.height = hgt2 + "vh";
 				}
+				if (i == animations.length - 1) {
+					setRunning(false);
+				}
 			}, i * 10);
 		}
 	};
@@ -91,20 +101,34 @@ function Main() {
 	return (
 		<>
 			<div className="outerBtn">
-				<button className="button" onClick={() => resetArray()}>
+				<button
+					className="btn button"
+					disabled={running}
+					onClick={() => resetArray()}
+				>
 					reset array
 				</button>
 				<input
 					type="range"
+					className="custom-range range"
 					min={25}
 					max={150}
 					value={numberOfLines}
+					disabled={running}
 					onChange={resetNumberOfLines}
 				></input>
-				<button className="button" onClick={() => bubbleSort()}>
+				<button
+					className="btn button"
+					disabled={running}
+					onClick={() => bubbleSort()}
+				>
 					Bubble Sort
 				</button>
-				<button className="button" onClick={() => mergeSort()}>
+				<button
+					className="btn button"
+					disabled={running}
+					onClick={() => mergeSort()}
+				>
 					Merge Sort
 				</button>
 			</div>
