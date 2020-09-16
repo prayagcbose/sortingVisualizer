@@ -97,7 +97,7 @@ function Main() {
 				<input
 					type="range"
 					min={25}
-					max={250}
+					max={150}
 					value={numberOfLines}
 					onChange={resetNumberOfLines}
 				></input>
@@ -115,7 +115,7 @@ function Main() {
 						className="line"
 						style={{
 							height: `${item}vh`,
-							width: `${8 - numberOfLines / 50}px`,
+							width: `${8 - numberOfLines / 100}px`,
 						}}
 					></div>
 				))}

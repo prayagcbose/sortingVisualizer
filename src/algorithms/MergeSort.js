@@ -7,7 +7,7 @@ const MergeSortSuper = (arrSuper) => {
 			globalArr.push(array[0]);
 			return array;
 		} else {
-			let mid = Math.floor(len / 2);
+			let mid = Math.ceil(len / 2);
 			let arr1 = MergeSort(array.slice(0, mid));
 			let arr2 = MergeSort(array.slice(mid, len));
 			return Merge(arr1, arr2);
