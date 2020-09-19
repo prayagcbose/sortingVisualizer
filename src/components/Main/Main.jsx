@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import "./Main.css";
 import BubbleSort from "../../algorithms/BubbleSort";
 import MergeSortSuper from "./../../algorithms/MergeSort";
+import QuickSortSuper from "./../../algorithms/QuickSort";
 
-const PRIMARY_COLOR = "orange";
-const SECONDARY_COLOR = "#429EA6";
+const PRIMARY_COLOR = "white";
+const SECONDARY_COLOR = "red";
 
 function Main() {
 	const [array, setArray] = useState([]);
 	const [numberOfLines, setNumberOfLines] = useState(25);
+	const [timeDelayOfAnimation, setTimeDelayOfAnimation] = useState(100);
 	const [running, setRunning] = useState(false);
 	useEffect(() => {
 		resetArray();
@@ -31,8 +33,7 @@ function Main() {
 	const bubbleSort = () => {
 		setRunning(true);
 		const { bubbleSrtAnimations, changeHeight } = BubbleSort([...array]);
-		// setbubbleSrtAnimations(bubbleSrtAnimations);
-		// setChangeHeight(changeHeight);
+
 		const lines = document.getElementsByClassName("line");
 		let colors = "pink";
 		for (let i in bubbleSrtAnimations) {
@@ -56,7 +57,7 @@ function Main() {
 					setRunning(false);
 					lines[0].style.backgroundColor = "green";
 				}
-			}, i * 10);
+			}, i * timeDelayOfAnimation);
 		}
 	};
 
@@ -85,7 +86,36 @@ function Main() {
 				if (i == animations.length - 1) {
 					setRunning(false);
 				}
-			}, i * 10);
+			}, i * timeDelayOfAnimation);
+		}
+	};
+
+	const quickSort = () => {
+		setRunning(true);
+		const { animations } = QuickSortSuper([...array]);
+
+		const lines = document.getElementsByClassName("line");
+		for (let i in animations) {
+			setTimeout(() => {
+				let colors = i % 3 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
+				if (i % 3 !== 1) {
+					const [idx1, idx2] = animations[i];
+					const lineStyle1 = lines[idx1].style;
+					const lineStyle2 = lines[idx2].style;
+					lineStyle1.backgroundColor = colors;
+					lineStyle2.backgroundColor = colors;
+				} else {
+					const [idx1, idx2] = animations[i - 1];
+					const [hgt1, hgt2] = animations[i];
+					const lineStyle1 = lines[idx1].style;
+					const lineStyle2 = lines[idx2].style;
+					lineStyle1.height = hgt1 + "vh";
+					lineStyle2.height = hgt2 + "vh";
+				}
+				if (i == animations.length - 1) {
+					setRunning(false);
+				}
+			}, i * timeDelayOfAnimation);
 		}
 	};
 
@@ -95,11 +125,13 @@ function Main() {
 
 	const resetNumberOfLines = (e) => {
 		setNumberOfLines(e.target.value);
+		setTimeDelayOfAnimation(125 - numberOfLines);
+		console.log(timeDelayOfAnimation);
 		resetArray();
 	};
 
 	return (
-		<>
+		<div className="container-fluid">
 			<div className="outerBtn">
 				<button
 					className="btn button"
@@ -112,7 +144,7 @@ function Main() {
 					type="range"
 					className="custom-range range"
 					min={25}
-					max={150}
+					max={80}
 					value={numberOfLines}
 					disabled={running}
 					onChange={resetNumberOfLines}
@@ -131,7 +163,15 @@ function Main() {
 				>
 					Merge Sort
 				</button>
+				<button
+					className="btn button"
+					disabled={running}
+					onClick={() => quickSort()}
+				>
+					Quick Sort
+				</button>
 			</div>
+
 			<div className="outerDiv">
 				{array.map((item, idx) => (
 					<div
@@ -144,7 +184,7 @@ function Main() {
 					></div>
 				))}
 			</div>
-		</>
+		</div>
 	);
 }
 
