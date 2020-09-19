@@ -56,7 +56,7 @@ const MergeSortSuper = (arrSuper) => {
 		//to get the aminations
 
 		j = lenGlobal - 1;
-		if (len3 == 2) {
+		if (len3 === 2) {
 			animations.push([j - 1, j]);
 			animations.push([globalArr[j - 1], globalArr[j]]);
 			animations.push([j - 1, j]);

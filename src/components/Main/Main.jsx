@@ -3,6 +3,7 @@ import "./Main.css";
 import BubbleSort from "../../algorithms/BubbleSort";
 import MergeSortSuper from "./../../algorithms/MergeSort";
 import QuickSortSuper from "./../../algorithms/QuickSort";
+import SelectionSort from "./../../algorithms/SelectionSort";
 
 const PRIMARY_COLOR = "white";
 const SECONDARY_COLOR = "red";
@@ -35,10 +36,10 @@ function Main() {
 		const { bubbleSrtAnimations, changeHeight } = BubbleSort([...array]);
 
 		const lines = document.getElementsByClassName("line");
-		let colors = "pink";
+
 		for (let i in bubbleSrtAnimations) {
-			const id = setTimeout(() => {
-				colors = i % 2 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
+			setTimeout(() => {
+				let colors = i % 2 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
 				const [idx1, idx2] = bubbleSrtAnimations[i];
 				const lineStyle1 = lines[idx1].style;
 				const lineStyle2 = lines[idx2].style;
@@ -53,11 +54,41 @@ function Main() {
 				if (i % 2 !== 0) {
 					lineStyle1.backgroundColor = "green";
 				}
-				if (i == bubbleSrtAnimations.length - 1) {
+				if (i === bubbleSrtAnimations.length - 1) {
 					setRunning(false);
 					lines[0].style.backgroundColor = "green";
 				}
 			}, i * timeDelayOfAnimation);
+		}
+	};
+
+	//selection sort
+
+	const selectionSort = () => {
+		const { animations } = SelectionSort([...array]);
+		const lines = document.getElementsByClassName("line");
+		for (let i in animations) {
+			setTimeout(() => {
+				if (animations[i].length === 1) {
+					const [idx] = animations[i];
+					const lineStyle = lines[idx].style;
+					lineStyle.backgroundColor =
+						lineStyle.backgroundColor == "red" ? PRIMARY_COLOR : "red";
+				} else {
+					if (animations[i].length === 3) {
+						const [idx] = animations[i];
+						const lineStyle = lines[idx].style;
+						lineStyle.backgroundColor =
+							lineStyle.backgroundColor == "yellow" ? PRIMARY_COLOR : "yellow";
+					} else {
+						const [idx1, idx2, hgt1, hgt2] = animations[i];
+						const lineStyle1 = lines[idx1].style;
+						const lineStyle2 = lines[idx2].style;
+						lineStyle1.height = `${hgt1}vh`;
+						lineStyle2.height = `${hgt2}vh`;
+					}
+				}
+			}, i * timeDelayOfAnimation * 2);
 		}
 	};
 
@@ -83,7 +114,7 @@ function Main() {
 					lineStyle1.height = hgt1 + "vh";
 					lineStyle2.height = hgt2 + "vh";
 				}
-				if (i == animations.length - 1) {
+				if (i === animations.length - 1) {
 					setRunning(false);
 				}
 			}, i * timeDelayOfAnimation);
@@ -112,7 +143,7 @@ function Main() {
 					lineStyle1.height = hgt1 + "vh";
 					lineStyle2.height = hgt2 + "vh";
 				}
-				if (i == animations.length - 1) {
+				if (i === animations.length - 1) {
 					setRunning(false);
 				}
 			}, i * timeDelayOfAnimation);
@@ -125,8 +156,7 @@ function Main() {
 
 	const resetNumberOfLines = (e) => {
 		setNumberOfLines(e.target.value);
-		setTimeDelayOfAnimation(125 - numberOfLines);
-		console.log(timeDelayOfAnimation);
+		setTimeDelayOfAnimation(100 - numberOfLines);
 		resetArray();
 	};
 
@@ -169,6 +199,13 @@ function Main() {
 					onClick={() => quickSort()}
 				>
 					Quick Sort
+				</button>
+				<button
+					className="btn button"
+					disabled={running}
+					onClick={() => selectionSort()}
+				>
+					Selection Sort
 				</button>
 			</div>
 
