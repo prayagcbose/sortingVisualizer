@@ -13,9 +13,14 @@
 
 .outerBtn {
 	display: flex;
-	justify-content: space-around;
-	margin-top: 1rem;
-	margin-bottom: 1rem;
+	justify-content: space-between;
+	white-space: nowrap;
+	overflow: auto;
+	margin: 1.5rem auto;
+}
+
+.outerBtn ::-webkit-scrollbar {
+	display: none;
 }
 
 .button {
@@ -26,6 +31,8 @@
 	height: 3rem;
 	border-radius: 7px;
 	box-shadow: gray;
+	margin: auto 1rem;
+	border: solid red 0.5px;
 }
 
 .button:hover {
@@ -34,5 +41,5 @@
 }
 
 .range {
-	width: 7rem;
+	margin: 0.1rem auto;
 }

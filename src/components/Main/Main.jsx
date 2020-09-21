@@ -54,7 +54,7 @@ function Main() {
 				if (i % 2 !== 0) {
 					lineStyle1.backgroundColor = "green";
 				}
-				if (i === bubbleSrtAnimations.length - 1) {
+				if (i == bubbleSrtAnimations.length - 1) {
 					setRunning(false);
 					lines[0].style.backgroundColor = "green";
 				}
@@ -114,7 +114,7 @@ function Main() {
 					lineStyle1.height = hgt1 + "vh";
 					lineStyle2.height = hgt2 + "vh";
 				}
-				if (i === animations.length - 1) {
+				if (i == animations.length - 1) {
 					setRunning(false);
 				}
 			}, i * timeDelayOfAnimation);
@@ -143,7 +143,7 @@ function Main() {
 					lineStyle1.height = hgt1 + "vh";
 					lineStyle2.height = hgt2 + "vh";
 				}
-				if (i === animations.length - 1) {
+				if (i == animations.length - 1) {
 					setRunning(false);
 				}
 			}, i * timeDelayOfAnimation);
@@ -170,15 +170,7 @@ function Main() {
 				>
 					reset array
 				</button>
-				<input
-					type="range"
-					className="custom-range range"
-					min={25}
-					max={80}
-					value={numberOfLines}
-					disabled={running}
-					onChange={resetNumberOfLines}
-				></input>
+
 				<button
 					className="btn button"
 					disabled={running}
@@ -208,6 +200,15 @@ function Main() {
 					Selection Sort
 				</button>
 			</div>
+			<input
+				type="range"
+				className="custom-range range"
+				min={25}
+				max={80}
+				value={numberOfLines}
+				disabled={running}
+				onChange={resetNumberOfLines}
+			></input>
 
 			<div className="outerDiv">
 				{array.map((item, idx) => (
@@ -216,7 +217,7 @@ function Main() {
 						className="line"
 						style={{
 							height: `${item}vh`,
-							width: `${8 - numberOfLines / 100}px`,
+							width: `${20 - numberOfLines / 5}px`,
 						}}
 					></div>
 				))}
