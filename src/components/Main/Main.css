@@ -16,7 +16,7 @@
 	justify-content: space-between;
 	white-space: nowrap;
 	overflow: auto;
-	margin: 1.5rem 0.7rem auto;
+	margin: 1rem auto 0.5rem;
 }
 
 .outerBtn ::-webkit-scrollbar {
@@ -41,5 +41,5 @@
 }
 
 .range {
-	margin: 0.1rem 0.3rem auto;
+	margin: 0.1rem auto 1rem;
 }

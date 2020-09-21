@@ -21,7 +21,7 @@ function Main() {
 		let array = [];
 		let random;
 		for (let i = 0; i < numberOfLines; i++) {
-			random = getRandomInt(5, 77);
+			random = getRandomInt(5, 70);
 			array.push(random);
 		}
 		setArray(array);
