@@ -21,7 +21,7 @@ function Main() {
 		let array = [];
 		let random;
 		for (let i = 0; i < numberOfLines; i++) {
-			random = getRandomInt(5, 80);
+			random = getRandomInt(5, 77);
 			array.push(random);
 		}
 		setArray(array);
@@ -65,6 +65,7 @@ function Main() {
 	//selection sort
 
 	const selectionSort = () => {
+		setRunning(true);
 		const { animations } = SelectionSort([...array]);
 		const lines = document.getElementsByClassName("line");
 		for (let i in animations) {
@@ -87,6 +88,9 @@ function Main() {
 						lineStyle1.height = `${hgt1}vh`;
 						lineStyle2.height = `${hgt2}vh`;
 					}
+				}
+				if (i == animations.length - 1) {
+					setRunning(false);
 				}
 			}, i * timeDelayOfAnimation * 2);
 		}
