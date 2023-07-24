@@ -1,3 +1,6 @@
+![image](https://github.com/prayagcbose/sortingVisualizer/assets/47104455/ef3c0754-ce45-4370-b18a-d2b928f9d82e)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 https://algomaster.netlify.app/
